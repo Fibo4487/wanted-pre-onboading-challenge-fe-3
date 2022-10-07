@@ -3,7 +3,7 @@ import React from "react";
 export interface RouteObject {
   path: string;
   component: React.ReactElement;
-  id: string;
+  key: string;
 }
 
 export interface RouterContext {

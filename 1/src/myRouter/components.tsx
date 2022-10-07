@@ -17,7 +17,7 @@ export function Router({ children }: RouterProps) {
   const routes: RouteObject[] = childrenArray.map((child, index) => {
     if (!React.isValidElement(child)) {
       return {
-        id: setId(index),
+        key: setId(index),
         component: null,
         path: "",
       };
@@ -26,13 +26,13 @@ export function Router({ children }: RouterProps) {
     return {
       path,
       component: component,
-      id: setId(index),
+      key: setId(index),
     };
   });
 
   const route = routes.find((route) => route.path === location.pathname);
 
-  return route ? route.component : null;
+  return route ? React.cloneElement(route.component, { key: route.key }) : null;
 }
 
 interface RouteProps {
